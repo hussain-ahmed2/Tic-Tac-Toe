@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="min-h-screen grid place-content-center gap-2">
+    
+    <div class="w-full grid place-content-end grid-cols-2 gap-2">
+        <div class="text-xl" id="choice">
+            <span>Your Choice: </span>
+            <button id="X" class="border-2 rounded-md shadow-xl p-2 hover:bg-slate-200">X</button>
+            <button id="O" class="border-2 rounded-md shadow-xl p-2 hover:bg-slate-200">O</button>
+        </div>
+        <button id="reset" type="button" class="text-xl p-2 border-2 rounded-md shadow-xl mb-5 hover:bg-slate-200">Reset</button>
+    </div>
+    <div id="root" class="grid grid-cols-3 gap-0.5"></div>
+    <div id="result" class="text-4xl grid place-content-center text-center w-full h-20"></div>
+    <script src="js/script.js"></script>
+</body>
+</html>
