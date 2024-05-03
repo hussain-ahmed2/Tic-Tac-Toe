@@ -11,7 +11,7 @@ for(let i=0; i<9; i++){
   btn.type = 'button'
   btn.value = null;
   btn.id = i;
-  btn.setAttribute('class', 'w-32 h-32 bg-blue-400 text-4xl font-mono rounded-sm text-white');
+  btn.setAttribute('class', 'h-24 w-24 bg-blue-400 text-4xl rounded-sm text-white');
   btn.onclick = ((e)=>btnClick(e));
   container.appendChild(btn);
 }
@@ -48,7 +48,6 @@ btny.onclick = () => {
 }
 
 const btn = document.querySelectorAll('input');
-let count = 0;
 let winnerFound = false;
 
 const btnClick = (e, status) => {
@@ -78,7 +77,20 @@ const btnClick = (e, status) => {
     }
   }
 
-  
+  winArr.forEach((a)=>{
+    if(btn[a[0]].value===(status= x? 'X':'O') && btn[a[1]].value===(status= x? 'X':'O') && btn[a[2]].value===(status= x? 'X':'O')){
+      output.innerText = 'You Win! 😃';
+      btn.forEach(btn => btn.onclick = false)
+      winnerFound = true;
+      return 
+    }else if(btn[a[0]].value===(status= x? 'O':'X') && btn[a[1]].value===(status= x? 'O':'X') && btn[a[2]].value===(status= x? 'O':'X')){
+      output.innerText = status + ' Wins!\nYou Lost 😢';
+      btn.forEach(btn => btn.onclick = false)
+      winnerFound = true;
+      return 
+    }
+  })
+
   if(choiceArr.length){
     let r = Math.floor(Math.random() * choiceArr.length);
     btn[choiceArr[r]].value = x? 'O':'X';
@@ -160,20 +172,38 @@ const btnClick = (e, status) => {
       output.innerText = 'You Win! 😃';
       btn.forEach(btn => btn.onclick = false)
       winnerFound = true;
-      return;
+      return 
     }else if(btn[a[0]].value===(status= x? 'O':'X') && btn[a[1]].value===(status= x? 'O':'X') && btn[a[2]].value===(status= x? 'O':'X')){
       output.innerText = status + ' Wins!\nYou Lost 😢';
       btn.forEach(btn => btn.onclick = false)
       winnerFound = true;
-      return;
+      return
     }
   })
-  if(!winnerFound && count===9){
-    output.innerText = status + ' Wins!';
-  }else{
-    count++;
+  
+  if(nullChecker() && !winnerFound){
+    output.innerText = 'Draw!\nPlay Again';
+    return 
   }
+  
+  
 }
+
+let count = 0;
+const nullChecker = () => {
+  btn.forEach(e => {
+    if(e.value){
+      count++;
+    }
+  })
+  console.log(count);
+  if(count === 9){
+    return true;
+  }else{
+    count = 0;
+    return false;
+  }
+} 
 
 
 reset.addEventListener('click', (e)=>{
@@ -213,6 +243,6 @@ reset.addEventListener('click', (e)=>{
   for(let i=0; i<9; i++){
     choiceArr.push(i);
   }
-
+  winnerFound = false;
   output.innerText = '';
 })
