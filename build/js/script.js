@@ -91,6 +91,8 @@ const btnClick = (e, status) => {
     }
   })
 
+  if(winnerFound) return
+
   if(choiceArr.length){
     let r = Math.floor(Math.random() * choiceArr.length);
     btn[choiceArr[r]].value = x? 'O':'X';
@@ -180,6 +182,8 @@ const btnClick = (e, status) => {
       return
     }
   })
+
+  if(winnerFound) return
   
   if(nullChecker() && !winnerFound){
     output.innerText = 'Draw!\nPlay Again';
