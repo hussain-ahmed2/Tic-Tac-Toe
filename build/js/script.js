@@ -200,7 +200,7 @@ const nullChecker = () => {
       count++;
     }
   })
-  console.log(count);
+  
   if(count === 9){
     return true;
   }else{
